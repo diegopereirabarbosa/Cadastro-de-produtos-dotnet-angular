@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api-cadastro-produtos", "api-cadastro-produtos.csproj", "{8B2098E4-9C69-414A-80A5-37E05C5C0205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-api-cadastro-produtos", "..\test-api-cadastro-produtos\test-api-cadastro-produtos.csproj", "{9D63A725-642F-44D4-938D-FB52C65E8EF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B2098E4-9C69-414A-80A5-37E05C5C0205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2098E4-9C69-414A-80A5-37E05C5C0205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2098E4-9C69-414A-80A5-37E05C5C0205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2098E4-9C69-414A-80A5-37E05C5C0205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D63A725-642F-44D4-938D-FB52C65E8EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D63A725-642F-44D4-938D-FB52C65E8EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D63A725-642F-44D4-938D-FB52C65E8EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D63A725-642F-44D4-938D-FB52C65E8EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B91B2C99-5319-4237-B338-1219A1C3F3F5}
+	EndGlobalSection
+EndGlobal
