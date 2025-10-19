@@ -45,4 +45,36 @@ A API estará disponível em https://localhost:44338 ou http://localhost:5024(do
 | PUT    | /api/produtos/{id} | Atualiza um produto existente |
 | DELETE | /api/produtos/{id} | Exclui um produto pelo ID     |
 
+##  Aplicação Angular
 
+Projeto frontend desenvolvido com **Angular 20** e **Angular Material**, utilizando arquitetura modular, tema customizado e boas práticas de UI/UX com Material Design.
+
+###  Tecnologias
+
+- [Angular 20](https://angular.io/)
+- [TypeScript 5+](https://www.typescriptlang.org/)
+- [RxJS 7+](https://rxjs.dev/)
+- SCSS com theming avançado
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/) (opcional)
+- [Tailwindcss V3] (https://v3.tailwindcss.com)
+
+###  Instalação
+#### Instale as dependências
+```bash
+npm install
+````
+#### Rode o projeto
+````bash
+ng serve
+````
+Acesse em: http://localhost:4200
+
+###  Scripts
+| Comando         | Descrição                            |
+| --------------- | ------------------------------------ |
+| `npm start`     | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera a versão de produção            |
+| `npm run lint`  | Roda o lint com ESLint               |
+| `npm run test`  | Roda os testes unitários com Karma   |
+| `npm run e2e`   | Roda testes de ponta a ponta (e2e)   |
