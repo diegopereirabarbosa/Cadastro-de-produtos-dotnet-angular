@@ -1,9 +1,10 @@
 # WebApp Cadastro de produtos .NET 9 e Angular-20
 Uma aplicação full stack simples para cadastro de produtos, com funcionalidades de listagem, criação, edição e exclusão.
 
-## Api (.NET 8 Web API)
-Esta é uma API RESTful desenvolvida com **.NET 9** e **ASP.NET Core**, com foco em performance, escalabilidade e boas práticas de arquitetura.
-
+## Api (.NET 9 Web API)
+- Esta é uma API RESTful desenvolvida com **.NET 9** e **ASP.NET Core**, com foco em performance, escalabilidade e boas práticas de desenvolvimento e arquitetura.
+- Desenvolvida utilizando Clean Architecture, padrão CQRS, Unit of Work, SOLID e Clean Code.
+- Aplicando também teste unitário usando Mock com Mediator.
 ###  Funcionalidades
 
 - CRUD completo de entidades (Produtos)
