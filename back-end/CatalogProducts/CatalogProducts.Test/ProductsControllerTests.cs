@@ -2,11 +2,13 @@
 using CatalogProducts.Aplication.UseCases.Products.Comands.CreateProduct;
 using CatalogProducts.Aplication.UseCases.Products.Comands.DeleteProduct;
 using CatalogProducts.Aplication.UseCases.Products.Comands.GetAllProduct;
+using CatalogProducts.Aplication.UseCases.Products.Comands.GetByIdProduct;
 using CatalogProducts.Aplication.UseCases.Products.Comands.UpdateProduct;
 using CatalogProducts.Aplication.UseCases.Products.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Xunit;
 
 namespace CatalogProducts.Tests
 {
@@ -42,13 +44,30 @@ namespace CatalogProducts.Tests
         }
 
         [Fact]
+        public async Task GetById_DeveRetornarProduto()
+        {
+            var id = 1;
+            var response = new ProductResponse { Id = id, Name = "Produto 1" };
+
+            _mediatorMock
+                .Setup(m => m.Send(It.Is<GetByIdProductRequest>(r => r.Id == id), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(response);
+
+            var result = await _controller.GetById(id, CancellationToken.None);
+
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+            var produto = Assert.IsType<ProductResponse>(okResult.Value);
+            Assert.Equal("Produto 1", produto.Name);
+        }
+
+        [Fact]
         public async Task Create_DeveRetornarProdutoCriado()
         {
-            CreateProductRequest request = new CreateProductRequest ("Novo Produto", "Teste", 10.50m);
+            var request = new CreateProductRequest("Novo Produto", "Teste", 10.50m);
             var response = new ProductResponse { Id = 1, Name = request.Name };
 
             _mediatorMock
-                .Setup(m => m.Send(request, It.IsAny<CancellationToken>()))
+                .Setup(m => m.Send(It.Is<CreateProductRequest>(r => r.Name == request.Name), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(response);
 
             var result = await _controller.Create(request, CancellationToken.None);
@@ -61,25 +80,28 @@ namespace CatalogProducts.Tests
         [Fact]
         public async Task Update_DeveRetornarBadRequest_QuandoIdsDiferem()
         {
-            var request = new UpdateProductRequest (1, "Produto Atualizado", "Teste", 10.50m);
+            var rotaId = 1;
+            var requestId = 2;
+            var request = new UpdateProductRequest(requestId, "Produto Atualizado", "Teste", 10.50m);
 
-            var result = await _controller.Updade(1, request, CancellationToken.None);
+            var result = await _controller.Update(rotaId, request, CancellationToken.None);
 
-            Assert.IsType<BadRequestResult>(result.Result);
+            var badRequest = Assert.IsType<BadRequestObjectResult>(result.Result);
+            Assert.Equal(400, badRequest.StatusCode);
         }
 
         [Fact]
         public async Task Update_DeveRetornarProdutoAtualizado()
         {
             var id = 1;
-            var request = new UpdateProductRequest(id, "Produto Atualizado","Teste", 10.50m);
+            var request = new UpdateProductRequest(id, "Produto Atualizado", "Teste", 10.50m);
             var response = new ProductResponse { Id = id, Name = request.Name };
 
             _mediatorMock
-                .Setup(m => m.Send(request, It.IsAny<CancellationToken>()))
+                .Setup(m => m.Send(It.Is<UpdateProductRequest>(r => r.Id == id), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(response);
 
-            var result = await _controller.Updade(id, request, CancellationToken.None);
+            var result = await _controller.Update(id, request, CancellationToken.None);
 
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
             var produto = Assert.IsType<ProductResponse>(okResult.Value);
@@ -87,11 +109,13 @@ namespace CatalogProducts.Tests
         }
 
         [Fact]
-        public async Task Delete_DeveRetornarBadRequest_QuandoIdForNulo()
+        public async Task Delete_DeveRetornarBadRequest_QuandoIdForInvalido()
         {
             var result = await _controller.Delete(0, CancellationToken.None);
+            var badRequestResult = result.Result as BadRequestObjectResult;
 
-            Assert.IsType<BadRequestResult>(result.Result);
+            Assert.NotNull(badRequestResult);
+            Assert.Equal(400, badRequestResult.StatusCode);
         }
 
         [Fact]
@@ -101,7 +125,7 @@ namespace CatalogProducts.Tests
             var response = new ProductResponse { Id = id, Name = "Excluído" };
 
             _mediatorMock
-                .Setup(m => m.Send(It.IsAny<DeleteProductRequest>(), It.IsAny<CancellationToken>()))
+                .Setup(m => m.Send(It.Is<DeleteProductRequest>(r => r.Id == id), It.IsAny<CancellationToken>()))
                 .ReturnsAsync(response);
 
             var result = await _controller.Delete(id, CancellationToken.None);

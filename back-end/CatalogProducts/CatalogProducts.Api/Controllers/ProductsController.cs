@@ -29,7 +29,7 @@ namespace CatalogProducts.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductResponse>> GetById(int id, CancellationToken cancellationToken)
         {
-            if (id == 0)
+            if (id <= 0)
             {
                 return BadRequest(new
                 {
@@ -54,7 +54,7 @@ namespace CatalogProducts.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductResponse>> Updade(int id, UpdateProductRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<ProductResponse>> Update(int id, UpdateProductRequest request, CancellationToken cancellationToken)
         {
             if (id == 0 || id != request.Id)
             {
