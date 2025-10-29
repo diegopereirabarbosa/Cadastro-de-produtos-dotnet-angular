@@ -2,8 +2,8 @@
 Uma aplicação full stack simples para cadastro de produtos, com funcionalidades de listagem, criação, edição e exclusão.
 
 ## Api (.NET 8 Web API)
-Esta é uma API RESTful desenvolvida com **.NET 9** e **ASP.NET Core**, com foco em performance, escalabilidade e boas práticas de arquitetura.
-
+Esta é uma API RESTful desenvolvida com **.NET 9** e **ASP.NET Core**, com foco em performance, escalabilidade e boas práticas de desenvolvimento e arquitetura.
+Desenvolvida utilizando Clean Arquiture no padrão CQRS, SOLID e Clean Code.
 ###  Funcionalidades
 
 - CRUD completo de entidades (Produtos)
